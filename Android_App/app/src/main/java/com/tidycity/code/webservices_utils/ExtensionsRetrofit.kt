@@ -341,6 +341,28 @@ class ExtensionsRetrofit(private val context: Context) {
         }
     }
 
+     fun createAccount(credentials: Prototypes.CreateAccountParams) {
+        RetrofitInterface().createAccount(credentials)
+            .enqueue(object : Callback<Prototypes.RfCreateAccountResponse> {
+                override fun onResponse(
+                    call: Call<Prototypes.RfCreateAccountResponse>,
+                    response: Response<Prototypes.RfCreateAccountResponse>
+                ) {
+                    Log.e("Retrofit on Response", response.code().toString())
+//                        // create string with format bearer token
+//                        token = "${
+//                            response.body()!!.token_type
+//                                .replaceFirstChar { it.uppercase() }
+//                        } ${response.body()!!.access_token}"
+//                        Log.d("token", token)
+                }
+
+                override fun onFailure(call: Call<Prototypes.RfCreateAccountResponse>, t: Throwable) {
+                    Log.e("Retrofit On Failure", t.message.toString())
+                }
+            })
+    }
+
 
 //    private fun uploadToBucket(urls:List<String>, files:List<String>){
 //        val CONTENT_IMAGE = "image/jpeg"

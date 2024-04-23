@@ -37,12 +37,10 @@ interface RetrofitInterface {
         @Header ("Authorization") token: String,
     ):Call<Prototypes.RfTokenValidation>
 
-//    @PUT
-//    fun uploadFileAWS(
-//        @Url signedUrl: String,
-//        @Body file: RequestBody
-//    ): Call<Void>
-
+    @POST("/auth/register/")
+    fun createAccount(
+        @Body request: Prototypes.CreateAccountParams
+    ):Call<Prototypes.RfCreateAccountResponse>
 
     companion object {
 
