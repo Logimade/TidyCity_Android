@@ -248,8 +248,8 @@ class ExtensionsRetrofit(private val context: Context) {
         try {
             run outForeach@{
                 allFramesSubList.indices.forEach {
-                    if (it != 0 || framesUploaded != 0)
-                        metadata = null
+//                    if (it != 0 || framesUploaded != 0)
+//                        metadata = null
                     Log.d("iteration", "entering")
                     val response: Response<Prototypes.RfFileResponse> = RetrofitInterface()
                         .uploadVideoServer(
