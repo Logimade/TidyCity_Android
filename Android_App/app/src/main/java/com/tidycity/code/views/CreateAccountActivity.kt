@@ -7,13 +7,13 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.tidycity.code.R
+import com.tidycity.code.database_utils.DatabaseAccess
+import com.tidycity.code.dataclasses_prototypes.Prototypes
 import com.tidycity.code.firebase_utils.FirebaseDeclarations.firebaseAuth
 import com.tidycity.code.firebase_utils.FirebaseDeclarations.firebaseUser
 import com.tidycity.code.utilities.Extensions.isInternetEnabled
 import com.tidycity.code.utilities.Extensions.toast
-import com.tidycity.code.R
-import com.tidycity.code.database_utils.DatabaseAccess
-import com.tidycity.code.dataclasses_prototypes.Prototypes
 import com.tidycity.code.webservices_utils.ExtensionsRetrofit
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
@@ -96,7 +96,7 @@ class CreateAccountActivity : AppCompatActivity() {
         return identical
     }
 
-    private fun FirebaseSignIn() {
+    private fun signIn() {
         if (identicalPassword()) {
             // identicalPassword() returns true only  when inputs are not empty and passwords are identical
             userEmail = etEmail.text.toString().trim()
@@ -124,6 +124,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 }
         }
     }
+
 
     private fun registerAccount() {
         if (identicalPassword()) {

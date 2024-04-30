@@ -37,10 +37,15 @@ interface RetrofitInterface {
         @Header ("Authorization") token: String,
     ):Call<Prototypes.RfTokenValidation>
 
-    @POST("/auth/register/")
+    @POST("auth/register")
     fun createAccount(
         @Body request: Prototypes.CreateAccountParams
     ):Call<Prototypes.RfCreateAccountResponse>
+
+    @POST("auth/authenticate")
+    fun signIn(
+        @Body request: Prototypes.SignInParams
+    ): Call<Prototypes.RfSignResponse>
 
     companion object {
 
@@ -80,7 +85,7 @@ interface RetrofitInterface {
             .addInterceptor(interceptor)
             .build()
 
-        private var BASE_URL = "https://tidycity.logimade.pt/server/api/"
+        private var BASE_URL = "https://0ff4-85-139-212-19.ngrok-free.app/api/web-services/"
 
         operator fun invoke(): RetrofitInterface {
             return Retrofit.Builder()

@@ -11,14 +11,11 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29"
-        tools:ignore="ScopedStorage"/>
-
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera.any" />
-<!--    android:debuggable="true"-->
-<!--    tools:ignore="HardcodedDebugMode"-->
 
     <application
         android:allowBackup="true"
@@ -26,13 +23,16 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="Tidy City"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="sensorLandscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tidy_City_App"
         android:usesCleartextTraffic="true"
-        tools:targetApi="33"
-        android:requestLegacyExternalStorage="true">
+        tools:targetApi="33">
+        <activity
+            android:name=".views.SettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".views.CreateAccountActivity"
             android:exported="false">
@@ -92,6 +92,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -100,8 +101,7 @@
                 android:value="" />
         </activity>
 
-        <service android:name=".gps_utils.GPService"/>
-
+        <service android:name=".gps_utils.GPService" />
     </application>
 
 </manifest>

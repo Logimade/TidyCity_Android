@@ -9,9 +9,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.tidycity.code.R
 import com.tidycity.code.database_utils.DatabaseAccess
+import com.tidycity.code.dataclasses_prototypes.Prototypes
 import com.tidycity.code.firebase_utils.FirebaseDeclarations.firebaseAuth
 import com.tidycity.code.utilities.Extensions.isInternetEnabled
 import com.tidycity.code.utilities.Extensions.toast
+import com.tidycity.code.webservices_utils.ExtensionsRetrofit
 
 class SignInActivity : AppCompatActivity() {
 
@@ -43,7 +45,7 @@ class SignInActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             if (!isInternetEnabled()) {
                 toast("Internet is disabled")
-            } else  signInUser()
+            } else  signInAccount()
         }
 
         forgotPwd.setOnClickListener {
@@ -86,5 +88,24 @@ class SignInActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun signInAccount() {
+        signInEmail = etEmail.text.toString().trim()
+        signInPassword = etPassword.text.toString().trim()
+
+        if (!notEmpty()){
+            signInInputsArray.forEach { input ->
+                if (input.text.toString().trim().isEmpty()) {
+                    input.error = "${input.hint} is required"
+                }
+            }
+        }
+
+        ExtensionsRetrofit(this@SignInActivity)
+            .authenticateAccount(credentials = Prototypes.SignInParams(
+                email = signInEmail,
+                password = signInPassword
+            ))
     }
 }

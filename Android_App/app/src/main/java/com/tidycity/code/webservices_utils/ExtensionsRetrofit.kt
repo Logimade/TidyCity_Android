@@ -48,8 +48,7 @@ class ExtensionsRetrofit(private val context: Context) {
                             null
                         )
                     )
-                }
-                else
+                } else
                     DatabaseAccess(context)
                         .updateUploadStatus(
                             specificVideo,
@@ -208,8 +207,7 @@ class ExtensionsRetrofit(private val context: Context) {
                         classes = it.classes
                     )
                 )
-            }
-            else {
+            } else {
                 DatabaseAccess(context).updateFramesLength(
                     key = videoId,
                     framesLength = (DatabaseAccess(context).getTotalFrames(videoId).totalFrames - 1)
@@ -301,8 +299,7 @@ class ExtensionsRetrofit(private val context: Context) {
                                 return@outForeach
                             }
                         }
-                    }
-                    else Log.e("Host Connection", "Failed to connect to host")
+                    } else Log.e("Host Connection", "Failed to connect to host")
                 }
             }
         } catch (ex: Exception) {
@@ -341,7 +338,7 @@ class ExtensionsRetrofit(private val context: Context) {
         }
     }
 
-     fun createAccount(credentials: Prototypes.CreateAccountParams) {
+    fun createAccount(credentials: Prototypes.CreateAccountParams) {
         RetrofitInterface().createAccount(credentials)
             .enqueue(object : Callback<Prototypes.RfCreateAccountResponse> {
                 override fun onResponse(
@@ -349,6 +346,9 @@ class ExtensionsRetrofit(private val context: Context) {
                     response: Response<Prototypes.RfCreateAccountResponse>
                 ) {
                     Log.e("Retrofit on Response", response.code().toString())
+                    Log.e("Retrofit on Response", response.message())
+
+
 //                        // create string with format bearer token
 //                        token = "${
 //                            response.body()!!.token_type
@@ -357,7 +357,27 @@ class ExtensionsRetrofit(private val context: Context) {
 //                        Log.d("token", token)
                 }
 
-                override fun onFailure(call: Call<Prototypes.RfCreateAccountResponse>, t: Throwable) {
+                override fun onFailure(
+                    call: Call<Prototypes.RfCreateAccountResponse>,
+                    t: Throwable
+                ) {
+                    Log.e("Retrofit On Failure", t.message.toString())
+                }
+            })
+    }
+
+    fun authenticateAccount(credentials: Prototypes.SignInParams) {
+        RetrofitInterface().signIn(credentials)
+            .enqueue(object : Callback<Prototypes.RfSignResponse> {
+                override fun onResponse(
+                    call: Call<Prototypes.RfSignResponse>,
+                    response: Response<Prototypes.RfSignResponse>
+                ) {
+                    Log.e("Retrofit on Response", response.code().toString())
+                    Log.e("Retrofit on Response", response.message())
+                }
+
+                override fun onFailure(call: Call<Prototypes.RfSignResponse>, t: Throwable) {
                     Log.e("Retrofit On Failure", t.message.toString())
                 }
             })

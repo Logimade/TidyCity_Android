@@ -55,4 +55,11 @@ sealed class Prototypes {
     )
 
     data class RfCreateAccountResponse(val message: String)
+
+    data class SignInParams(
+        val email: String,
+        val password: String
+    )
+
+    data class RfSignResponse(val tokenType: String, val accessToken: String)
 }
