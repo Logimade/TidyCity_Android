@@ -62,5 +62,17 @@
     <string name="outdoor">Outdoor</string>
     <string name="appliances_furniture">Appliances_Furniture</string>
     <string name="traffic_signs">Traffic_Signs</string>
+    <string name="iconback">iconBack</string>
+    <string name="upload_settings">Upload Settings:</string>
+    <string name="wifi_only">Wifi Only</string>
+    <string name="wifi_or_mobile_network">Wifi or Mobile Network</string>
+    <string name="notifications">Notifications</string>
+    <string name="invites">Invites</string>
+    <string name="pod_access">Pod Access</string>
+    <string name="events">Events</string>
+    <string name="annotations">Annotations</string>
+    <string name="where_do_you_want_to_store_your_data">Where do you want to store your data?</string>
+    <string name="use_theia">Use Theia</string>
+    <string name="use_solid">Use Solid</string>
 
 </resources>
