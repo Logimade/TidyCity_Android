@@ -383,6 +383,24 @@ class ExtensionsRetrofit(private val context: Context) {
             })
     }
 
+    fun solid() {
+        RetrofitInterface("https://andre.dume-arditi.com/").testSolid("nssidp.sid=s%3AORr5YZBHcNEtwxgw7UtWRxJRlxSfN5BT.PKp1LijAG7ETcbr8LaB3SHyQGJnScWJWUKSkPlSW%2FL4").enqueue(
+            object : Callback<Any> {
+                override fun onResponse(
+                    call: Call<Any>,
+                    response: Response<Any>
+                ) {
+                    Log.e("Retrofit on Response", response.code().toString())
+                    Log.e("Retrofit on Response", response.message())
+                }
+
+                override fun onFailure(call: Call<Any>, t: Throwable) {
+                    Log.e("Retrofit On Failure", t.message.toString())
+                }
+            })
+
+    }
+
 
 //    private fun uploadToBucket(urls:List<String>, files:List<String>){
 //        val CONTENT_IMAGE = "image/jpeg"

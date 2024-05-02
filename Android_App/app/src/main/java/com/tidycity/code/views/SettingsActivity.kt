@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.tidycity.code.R
+import com.tidycity.code.webservices_utils.ExtensionsRetrofit
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -38,6 +39,10 @@ class SettingsActivity : AppCompatActivity() {
 
         theiaButton.setOnClickListener {
             openSolidBrowser()
+        }
+
+        solidButton.setOnClickListener {
+            ExtensionsRetrofit(this@SettingsActivity).solid()
         }
     }
 

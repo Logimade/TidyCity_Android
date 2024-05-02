@@ -47,6 +47,13 @@ interface RetrofitInterface {
         @Body request: Prototypes.SignInParams
     ): Call<Prototypes.RfSignResponse>
 
+    /***
+     Calls for Solid Protocol
+      */
+
+    @GET("theia-vision/ledger.rdf")
+fun testSolid(@Header ("Cookie") userCookie: String): Call<Any>
+
     companion object {
 
         private val interceptor = Interceptor { chain ->
@@ -87,9 +94,12 @@ interface RetrofitInterface {
 
         private var BASE_URL = "https://0ff4-85-139-212-19.ngrok-free.app/api/web-services/"
 
-        operator fun invoke(): RetrofitInterface {
+        operator fun invoke(baseUrl: String? = null): RetrofitInterface {
+
+            val url = baseUrl ?: BASE_URL
+
             return Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()
