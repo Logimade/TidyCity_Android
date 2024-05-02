@@ -60,7 +60,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.HomeActivity"
+            android:name=".views.PresentationActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -88,7 +88,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.PresentationActivity"
+            android:name=".views.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -23,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var recordData: Button
     private lateinit var showHistory: Button
     private lateinit var settings: Button
+    private lateinit var switchView: Button
 
     private var userEmail: String? = null
     private var username: String? = null
@@ -70,6 +71,12 @@ class HomeActivity : AppCompatActivity() {
 
         settings.setOnClickListener {
             showMenu()
+        }
+
+        switchView = findViewById(R.id.btnHelp)
+        switchView.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 
