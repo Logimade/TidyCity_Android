@@ -74,5 +74,6 @@
     <string name="where_do_you_want_to_store_your_data">Where do you want to store your data?</string>
     <string name="use_theia">Use Theia</string>
     <string name="use_solid">Use Solid</string>
+    <string name="pod_accesses">Pod Accesses</string>
 
 </resources>

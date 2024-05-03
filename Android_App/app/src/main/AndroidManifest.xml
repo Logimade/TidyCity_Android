@@ -31,6 +31,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
+            android:name=".views.PodAccessActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.SettingsActivity"
             android:exported="false" />
         <activity
