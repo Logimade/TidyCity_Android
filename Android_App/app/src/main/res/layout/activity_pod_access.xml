@@ -95,9 +95,9 @@
             android:layout_below="@id/barBelowComponents"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_tablayout_background"
-            android:elevation="1dp" />
-
-
+            android:elevation="4dp"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorColor="@color/button_background"/>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
