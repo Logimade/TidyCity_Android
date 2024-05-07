@@ -75,5 +75,6 @@
     <string name="use_theia">Use Theia</string>
     <string name="use_solid">Use Solid</string>
     <string name="pod_accesses">Pod Accesses</string>
+    <string name="pod_files">POD Files</string>
 
 </resources>
