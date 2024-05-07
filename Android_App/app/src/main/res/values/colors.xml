@@ -13,4 +13,5 @@
     <color name="ic_uploaded_background">#FFFFFF</color>
     <color name="ic_upload_background">#FFFFFF</color>
     <color name="button_background">#9747FF</color>
+    <color name="yellow">#FFFFEB3B</color>
 </resources>
