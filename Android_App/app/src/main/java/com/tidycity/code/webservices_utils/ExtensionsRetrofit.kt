@@ -384,18 +384,60 @@ class ExtensionsRetrofit(private val context: Context) {
     }
 
     fun solid() {
-        RetrofitInterface("https://andre.dume-arditi.com/").testSolid("nssidp.sid=s%3AORr5YZBHcNEtwxgw7UtWRxJRlxSfN5BT.PKp1LijAG7ETcbr8LaB3SHyQGJnScWJWUKSkPlSW%2FL4").enqueue(
-            object : Callback<Any> {
+        RetrofitInterface("https://andre.dume-arditi.com/").testSolid("nssidp.sid=s%3AORr5YZBHcNEtwxgw7UtWRxJRlxSfN5BT.PKp1LijAG7ETcbr8LaB3SHyQGJnScWJWUKSkPlSW%2FL4")
+            .enqueue(
+                object : Callback<Any> {
+                    override fun onResponse(
+                        call: Call<Any>,
+                        response: Response<Any>
+                    ) {
+                        Log.e("Retrofit on Response", response.code().toString())
+                        Log.e("Retrofit on Response", response.message())
+                    }
+
+                    override fun onFailure(call: Call<Any>, t: Throwable) {
+                        Log.e("Retrofit On Failure", t.message.toString())
+                    }
+                })
+
+    }
+
+    fun solidAuth() {
+        RetrofitInterface("https://dume-arditi.com/").testAuth(
+            username = "test1",
+            password = "Test1234!"
+        ).enqueue(
+            object : Callback<String> {
                 override fun onResponse(
-                    call: Call<Any>,
-                    response: Response<Any>
+                    call: Call<String>,
+                    response: Response<String>
                 ) {
                     Log.e("Retrofit on Response", response.code().toString())
                     Log.e("Retrofit on Response", response.message())
+                    Log.i("Response Headers", "${response.headers()}")
+
+                    try {
+                        val Cookielist = response.headers().values("Set-Cookie")
+                        Cookielist.forEach {
+                            Log.i("cookie", it)
+                        }
+                        val jsessionid =
+                            Cookielist[0].split(";".toRegex()).dropLastWhile { it.isEmpty() }
+                                .toTypedArray()[0]
+
+
+
+                    }
+                    catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+
+
                 }
 
-                override fun onFailure(call: Call<Any>, t: Throwable) {
-                    Log.e("Retrofit On Failure", t.message.toString())
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Log.e("Retrofit On Failure", t.stackTraceToString())
                 }
             })
 

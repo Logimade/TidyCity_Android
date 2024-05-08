@@ -112,6 +112,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // GSON
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
+
 
     // JSON
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1'

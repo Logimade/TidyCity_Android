@@ -75,7 +75,7 @@ class HomeActivity : AppCompatActivity() {
 
         switchView = findViewById(R.id.btnHelp)
         switchView.setOnClickListener {
-            val intent = Intent(this, UserPodFiles::class.java)
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }

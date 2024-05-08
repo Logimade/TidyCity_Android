@@ -42,7 +42,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         solidButton.setOnClickListener {
-            ExtensionsRetrofit(this@SettingsActivity).solid()
+            ExtensionsRetrofit(this@SettingsActivity).solidAuth()
         }
     }
 

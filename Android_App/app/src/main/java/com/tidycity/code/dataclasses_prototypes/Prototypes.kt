@@ -62,4 +62,9 @@ sealed class Prototypes {
     )
 
     data class RfSignResponse(val tokenType: String, val accessToken: String)
+
+    data class LoginSolidParams(
+        val username: String,
+        val password: String
+    )
 }
