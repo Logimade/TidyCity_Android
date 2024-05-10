@@ -75,9 +75,24 @@ class HomeActivity : AppCompatActivity() {
 
         switchView = findViewById(R.id.btnHelp)
         switchView.setOnClickListener {
+            val intent = Intent(this, PodAccessActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btn1: Button = findViewById<Button>(R.id.btnHelp1)
+        btn1.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
+
+
+        val btn2: Button = findViewById<Button>(R.id.btnHelp2)
+        btn2.setOnClickListener {
+            val intent = Intent(this, UserPodFiles::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 //    private fun showUploadDialog() {

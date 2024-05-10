@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.UserPodFiles">
+    tools:context=".views.UserPodFiles"
+    android:background="@drawable/background_color">
 
     <RelativeLayout
         android:id="@+id/topBarLayout"

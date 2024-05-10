@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.tidycity.code.R
@@ -17,6 +18,10 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var uploadConnectivityArray: Array<RadioButton>
     private lateinit var notificationsArray: Array<CheckBox>
+
+    private lateinit var backButton: ImageView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -43,6 +48,12 @@ class SettingsActivity : AppCompatActivity() {
 
         solidButton.setOnClickListener {
             ExtensionsRetrofit(this@SettingsActivity).solidAuth()
+        }
+
+        backButton = findViewById(R.id.backIcon)
+        backButton.setOnClickListener {
+            val intent = Intent(this@SettingsActivity, HomeActivity::class.java)
+            startActivity(intent)
         }
     }
 

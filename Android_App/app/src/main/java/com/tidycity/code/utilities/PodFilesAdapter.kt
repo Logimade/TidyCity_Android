@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tidycity.code.R
 import com.tidycity.code.dataclasses_prototypes.Prototypes
 
-class PodAccessAdapter(private val context: Context) :
-    RecyclerView.Adapter<PodAccessAdapter.MyViewHolder>() {
+class PodFilesAdapter(private val context: Context) :
+    RecyclerView.Adapter<PodFilesAdapter.MyViewHolder>() {
 
     var uploadedHistory = emptyList<String>()
 
@@ -22,7 +22,7 @@ class PodAccessAdapter(private val context: Context) :
         val user: TextView
         val podUrl: TextView
         val detailsMenu: ImageView
-        val accessType: TextView
+//        val accessType: TextView
 
 
         init {
@@ -30,7 +30,7 @@ class PodAccessAdapter(private val context: Context) :
             user = itemView.findViewById(R.id.userItem)
             podUrl = itemView.findViewById(R.id.podItem)
             detailsMenu = itemView.findViewById(R.id.details)
-            accessType = itemView.findViewById(R.id.accessType)
+//            accessType = itemView.findViewById(R.id.accessType)
         }
 
 

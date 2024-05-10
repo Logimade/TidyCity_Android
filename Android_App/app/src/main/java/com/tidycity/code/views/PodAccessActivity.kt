@@ -1,5 +1,6 @@
 package com.tidycity.code.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -35,6 +36,7 @@ class PodAccessActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var contentList: RecyclerView
     private lateinit var historyAdapter: PodAccessAdapter
+    private lateinit var backButton: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,6 +115,12 @@ class PodAccessActivity : AppCompatActivity() {
 
         val videoStatusList = listOf("Status 1", "Status 2", "Status 3", "Status 3", "Status 3", "Status 3", "Status 3","Status 3")
         historyAdapter.setData(videoStatusList)
+
+        backButton = findViewById(R.id.backIcon)
+        backButton.setOnClickListener {
+            val intent = Intent(this@PodAccessActivity, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 //    private fun detailsOnClick(position: Int) {

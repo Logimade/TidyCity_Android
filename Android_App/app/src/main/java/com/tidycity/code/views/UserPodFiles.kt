@@ -1,21 +1,28 @@
 package com.tidycity.code.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.tidycity.code.R
+import com.tidycity.code.utilities.PodAccessAdapter
+import com.tidycity.code.utilities.PodFilesAdapter
 
 class UserPodFiles : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
-
-
+    private lateinit var backButton: ImageView
+    private lateinit var contentList: RecyclerView
+    private lateinit var historyAdapter: PodFilesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_pod_files)
@@ -80,5 +87,22 @@ class UserPodFiles : AppCompatActivity() {
         // Set the tabSelectedListener to the TabLayout
         tabLayout.addOnTabSelectedListener(tabSelectedListener)
 
+        backButton = findViewById(R.id.backIcon)
+        backButton.setOnClickListener {
+            val intent = Intent(this@UserPodFiles, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        contentList = findViewById(R.id.list)
+        contentList.layoutManager = LinearLayoutManager(this)
+
+        historyAdapter = PodFilesAdapter(
+            this@UserPodFiles,
+        )
+
+        contentList.adapter = historyAdapter
+
+        val videoStatusList = listOf("Status 1", "Status 2", "Status 3", "Status 3", "Status 3", "Status 3", "Status 3","Status 3")
+        historyAdapter.setData(videoStatusList)
     }
 }

@@ -94,7 +94,7 @@
         android:layout_marginVertical="30dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:text="Switch"
+        android:text="Access"
         android:backgroundTint="@color/green_background"
         android:textSize="20dp"
         android:fontFamily="@font/acme_regular"
@@ -103,5 +103,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnHistory" />
+
+    <Button
+        android:id="@+id/btnHelp1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Settings"
+        android:backgroundTint="@color/green_background"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme_regular"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHelp" />
+
+    <Button
+        android:id="@+id/btnHelp2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Files"
+        android:backgroundTint="@color/green_background"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme_regular"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHelp1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
