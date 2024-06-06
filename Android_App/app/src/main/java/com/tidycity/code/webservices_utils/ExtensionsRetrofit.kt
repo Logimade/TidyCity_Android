@@ -440,8 +440,29 @@ class ExtensionsRetrofit(private val context: Context) {
                     Log.e("Retrofit On Failure", t.stackTraceToString())
                 }
             })
-
     }
+
+    fun createPodAccount(credentials: Prototypes.CreateSolidParams){
+        RetrofitInterface("https://dume-arditi.com/").createUserPod(name = credentials.name,
+            username = credentials.username, password = credentials.password, email = credentials.email)
+            .enqueue(object : Callback<String> {
+                override fun onResponse(
+                    call: Call<String>,
+                    response: Response<String>
+                ) {
+                    Log.e("Retrofit on Response", response.code().toString())
+                    Log.e("Retrofit on Response", response.message())
+                }
+
+                override fun onFailure(
+                    call: Call<String>,
+                    t: Throwable
+                ) {
+                    Log.e("Retrofit On Failure", t.message.toString())
+                }
+            })
+    }
+}
 
 
 //    private fun uploadToBucket(urls:List<String>, files:List<String>){
@@ -466,4 +487,3 @@ class ExtensionsRetrofit(private val context: Context) {
 //        })
 //
 //    }
-}

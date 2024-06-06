@@ -40,6 +40,9 @@
             android:name=".views.SettingsActivity"
             android:exported="false" />
         <activity
+            android:name=".views.CreatePodAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.CreateAccountActivity"
             android:exported="false">
             <meta-data

@@ -72,6 +72,27 @@ interface RetrofitInterface {
     fun testSolid(@Header("Cookie") userCookie: String): Call<Any>
 
 
+    @POST("api/accounts/new")
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @FormUrlEncoded
+    fun createUserPod(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("email") email: String,
+        @Field("name") name: String
+    ): Call<String>
+
+    @POST("jwt")
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @FormUrlEncoded
+    fun getPodToken(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("webId") email: String,
+    ): Call<String>
+
+
+
     @POST("login/password")
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded
@@ -111,11 +132,11 @@ interface RetrofitInterface {
                 .proceed(request)
 
         }
+
         //show Network information in to the logcat
-        val interceptorLogs =  HttpLoggingInterceptor().apply {
+        val interceptorLogs = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
-
 
 
         private var okHttpClient: OkHttpClient = OkHttpClient.Builder()
@@ -141,6 +162,7 @@ interface RetrofitInterface {
             return Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()
                 .create(RetrofitInterface::class.java)
@@ -157,7 +179,7 @@ class MyCookieJar : CookieJar {
     }
 
     override fun loadForRequest(url: HttpUrl): List<Cookie> {
-        return  mutableListOf<Cookie>()
+        return mutableListOf<Cookie>()
     }
 
 }
@@ -167,7 +189,7 @@ class CookieDataStore {
         Log.d("Cookies", "$cookies")
     }
 
-    fun getCookies(){
+    fun getCookies() {
         Log.d("Test", "hello")
 
 

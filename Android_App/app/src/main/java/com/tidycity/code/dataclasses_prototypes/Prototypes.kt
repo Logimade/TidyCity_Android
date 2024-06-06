@@ -67,4 +67,11 @@ sealed class Prototypes {
         val username: String,
         val password: String
     )
+
+    data class CreateSolidParams(
+        val username: String,
+        val password: String,
+        val email: String,
+        val name: String
+    )
 }
