@@ -23,8 +23,10 @@ import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Query
+import retrofit2.http.Url
 import java.util.concurrent.TimeUnit
 
 
@@ -82,16 +84,39 @@ interface RetrofitInterface {
         @Field("name") name: String
     ): Call<String>
 
+    data class tokenReponse(
+        val token: String
+    )
     @POST("jwt")
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded
     fun getPodToken(
         @Field("username") username: String,
         @Field("password") password: String,
-        @Field("webId") email: String,
+        @Field("webId") webId: String,
+    ): Call<tokenReponse>
+
+
+    data class RequestBodyData(
+        val a: String,
+        val b: String
+    )
+    @Headers("Content-Type: application/json")
+    @PUT
+    fun updatePodData(
+        @Url url: String,
+        @Header("Authorization") authorization: String,
+        @Body requestBodyData: RequestBodyData
     ): Call<String>
 
-
+    @Multipart
+    @PUT
+    fun uploadPodImage(
+        @Url url: String,
+        @Header("Authorization") authorization: String,
+        @Header("Content-Type") contentType: String,
+        @Part file: MultipartBody.Part
+    ): Call<String>
 
     @POST("login/password")
     @Headers("Content-Type: application/x-www-form-urlencoded")
@@ -162,7 +187,7 @@ interface RetrofitInterface {
             return Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(ScalarsConverterFactory.create())
-//                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()
                 .create(RetrofitInterface::class.java)

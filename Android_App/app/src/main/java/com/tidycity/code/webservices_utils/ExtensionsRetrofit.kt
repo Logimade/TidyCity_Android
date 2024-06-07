@@ -2,6 +2,7 @@ package com.tidycity.code.webservices_utils
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.tidycity.code.database_utils.DatabaseAccess
 import com.tidycity.code.database_utils.FrameStructure
 import com.tidycity.code.dataclasses_prototypes.Prototypes
@@ -426,12 +427,9 @@ class ExtensionsRetrofit(private val context: Context) {
                                 .toTypedArray()[0]
 
 
-
-                    }
-                    catch (e: Exception) {
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
-
 
 
                 }
@@ -442,9 +440,13 @@ class ExtensionsRetrofit(private val context: Context) {
             })
     }
 
-    fun createPodAccount(credentials: Prototypes.CreateSolidParams){
-        RetrofitInterface("https://dume-arditi.com/").createUserPod(name = credentials.name,
-            username = credentials.username, password = credentials.password, email = credentials.email)
+    fun createPodAccount(credentials: Prototypes.CreateSolidParams) {
+        RetrofitInterface("https://dume-arditi.com/").createUserPod(
+            name = credentials.name,
+            username = credentials.username,
+            password = credentials.password,
+            email = credentials.email
+        )
             .enqueue(object : Callback<String> {
                 override fun onResponse(
                     call: Call<String>,
@@ -452,6 +454,8 @@ class ExtensionsRetrofit(private val context: Context) {
                 ) {
                     Log.e("Retrofit on Response", response.code().toString())
                     Log.e("Retrofit on Response", response.message())
+
+                    Toast.makeText(context, "Pod Created Successfully", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onFailure(
@@ -462,6 +466,123 @@ class ExtensionsRetrofit(private val context: Context) {
                 }
             })
     }
+
+    fun uploadLedger() {
+
+        RetrofitInterface("https://dume-arditi.com/").getPodToken(
+            username = "android123",
+            password = "teste_123!", webId = "https://android123.dume-arditi.com/profile/card#me"
+        )
+            .enqueue(object : Callback<RetrofitInterface.tokenReponse> {
+                override fun onResponse(
+                    call: Call<RetrofitInterface.tokenReponse>,
+                    response: Response<RetrofitInterface.tokenReponse>
+                ) {
+                    Log.e("Retrofit on Response", response.code().toString())
+                    if (response.code() != 200) {
+                        Toast.makeText(context, "Error getting token", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+
+                    RetrofitInterface("https://dume-arditi.com/").updatePodData(
+                        url = "https://android123.dume-arditi.com/theia-vision/ledger1.json",
+                        authorization = "Bearer " + response.body()!!.token,
+                        requestBodyData = RetrofitInterface.RequestBodyData(
+                            a = "a",
+                            b = "b"
+                        )
+                    ).enqueue(object : Callback<String> {
+                        override fun onResponse(
+                            call: Call<String>,
+                            response: Response<String>
+                        ) {
+                            Log.e("Retrofit on Response", response.code().toString())
+                            Log.e("Retrofit on Response", response.message())
+
+                            Toast.makeText(context, "Pod Created Successfully", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                        override fun onFailure(
+                            call: Call<String>,
+                            t: Throwable
+                        ) {
+                            Log.e("Retrofit On Failure", t.message.toString())
+                        }
+                    })
+
+                    Log.e("Retrofit on Response", response.message())
+                    Log.d("Retrofit on Response", response.body()!!.toString())
+
+                    Toast.makeText(context, "Pod Created Successfully", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onFailure(
+                    call: Call<RetrofitInterface.tokenReponse>,
+                    t: Throwable
+                ) {
+                    Log.e("Retrofit On Failure", t.message.toString())
+                }
+            })
+    }
+
+    fun uploadPicPod(fileR: MultipartBody.Part) {
+
+        RetrofitInterface("https://dume-arditi.com/").getPodToken(
+            username = "android123",
+            password = "teste_123!", webId = "https://android123.dume-arditi.com/profile/card#me"
+        )
+            .enqueue(object : Callback<RetrofitInterface.tokenReponse> {
+                override fun onResponse(
+                    call: Call<RetrofitInterface.tokenReponse>,
+                    response: Response<RetrofitInterface.tokenReponse>
+                ) {
+                    Log.e("Retrofit on Response", response.code().toString())
+                    if (response.code() != 200) {
+                        Toast.makeText(context, "Error getting token", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+
+                    RetrofitInterface("https://dume-arditi.com/").uploadPodImage(
+                        url = "https://android123.dume-arditi.com/theia-vision/01Mar2024/Inicio_11h20min_Fim_11h44min/Placeholder1.jpg",
+                        authorization = "Bearer " + response.body()!!.token,
+                        contentType = "image/jpeg",
+                        file = fileR
+                    ).enqueue(object : Callback<String> {
+                        override fun onResponse(
+                            call: Call<String>,
+                            response: Response<String>
+                        ) {
+                            Log.e("Retrofit on Response", response.code().toString())
+                            Log.e("Retrofit on Response", response.message())
+
+                            Toast.makeText(context, "Pod Created Successfully", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                        override fun onFailure(
+                            call: Call<String>,
+                            t: Throwable
+                        ) {
+                            Log.e("Retrofit On Failure", t.message.toString())
+                        }
+                    })
+
+                    Log.e("Retrofit on Response", response.message())
+                    Log.d("Retrofit on Response", response.body()!!.toString())
+
+                    Toast.makeText(context, "Pod Created Successfully", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onFailure(
+                    call: Call<RetrofitInterface.tokenReponse>,
+                    t: Throwable
+                ) {
+                    Log.e("Retrofit On Failure", t.message.toString())
+                }
+            })
+    }
+
 }
 
 

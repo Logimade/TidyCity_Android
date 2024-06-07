@@ -94,36 +94,6 @@ class CreatePodAccountActivity : AppCompatActivity() {
         return identical
     }
 
-    private fun signIn() {
-        if (identicalPassword()) {
-            // identicalPassword() returns true only  when inputs are not empty and passwords are identical
-            userEmail = etEmail.text.toString().trim()
-            userPassword = etPassword.text.toString().trim()
-            userName = etUsername.text.toString().trim()
-
-            /*create a user*/
-            firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        toast("created account successfully !")
-                        sendEmailVerification()
-
-                        // add new user to database
-                        lifecycleScope.launch {
-                            DatabaseAccess(this@CreatePodAccountActivity)
-                                .addUser(userEmail, userName, userPassword)
-                        }
-
-                        startActivity(Intent(this, SignInActivity::class.java))
-                        finish()
-                    } else if (task.exception?.message == "The email address is already in use by another account") {
-                        toast("Email already in use")
-                    } else toast("Register failed!")
-                }
-        }
-    }
-
-
     private fun registerAccount() {
         if (!empty() && !passwordContain()) {
             // identicalPassword() returns true only  when inputs are not empty and passwords are identical
@@ -141,19 +111,6 @@ class CreatePodAccountActivity : AppCompatActivity() {
                         name = name
                     )
                 )
-        }
-    }
-
-    /* send verification email to the new user. This will only
-    *  work if the firebase user is not null.
-    */
-    private fun sendEmailVerification() {
-        firebaseUser?.let {
-            it.sendEmailVerification().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    toast("email sent to $userEmail")
-                }
-            }
         }
     }
 }

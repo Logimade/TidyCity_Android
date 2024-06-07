@@ -92,6 +92,12 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val btn3: Button = findViewById<Button>(R.id.btnHelp3)
+        btn3.setOnClickListener {
+            val intent = Intent(this, PodUploadingActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

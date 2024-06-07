@@ -43,6 +43,9 @@
             android:name=".views.CreatePodAccountActivity"
             android:exported="false" />
         <activity
+            android:name=".views.PodUploadingActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.CreateAccountActivity"
             android:exported="false">
             <meta-data
@@ -111,6 +114,15 @@
         </activity>
 
         <service android:name=".gps_utils.GPService" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.tidycity.code.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
